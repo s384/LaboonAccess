@@ -26,7 +26,7 @@ class windows(QWidget):
     # Personalizando Componentes
     font = QFont()
     font.setFamily("Akaash")
-    font.setPointSize(15)
+    font.setPointSize(12)
     font.setBold(False)
     font.setWeight(50)
     self.ui.lbl_estado.setFont(font)
@@ -179,7 +179,7 @@ class windows(QWidget):
     
 if __name__ == '__main__':
   if not os.path.exists('/etc/hosts.la.backup'):
-    os.system('sudo cp /etc/hosts /etc/hosts.la.backup')
+    os.system('cp /etc/hosts /etc/hosts.la.backup')
   app = QApplication(sys.argv)
   win = windows()
   win.show()
