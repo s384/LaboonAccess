@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>542</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>542</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>542</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Akaash</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>LaboonAccess</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../icons/control parental.svg</normaloff>../icons/control parental.svg</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btn_agregar">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Agregar una pagina ( ctrl + A )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_agregar {
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+}
+#btn_agregar:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+	background-color: rgb(236, 236, 236);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/plus-circle.svg</normaloff>../icons/plus-circle.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_quitar">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Quitar pagina seleccionado ( supr )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_quitar {
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+}
+#btn_quitar:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+	background-color: rgb(236, 236, 236);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/minus-circle.svg</normaloff>../icons/minus-circle.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Del</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_guardar">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Guardar la lista ( ctrl + S )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_guardar {
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+}
+#btn_guardar:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+	background-color: rgb(236, 236, 236);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/save.svg</normaloff>../icons/save.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+S</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_importar">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Importar lista de paginas ( ctrl + O )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_importar {
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+}
+#btn_importar:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+	background-color: rgb(236, 236, 236);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/sunset.svg</normaloff>../icons/sunset.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+O</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_exportar">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Exportar mi llista ( ctrl + E )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_exportar {
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+}
+#btn_exportar:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+	background-color: rgb(236, 236, 236);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/sunrise.svg</normaloff>../icons/sunrise.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+E</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_acerca">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Acerca de nosotros ( ctrl + D )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#btn_acerca {
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+}
+#btn_acerca:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+	background-color: rgb(236, 236, 236);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/user.svg</normaloff>../icons/user.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+D</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <family>Akaash</family>
+       <pointsize>15</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(200, 200, 200);</string>
+     </property>
+     <property name="text">
+      <string>Lista con las paginas a ser bloqueadas</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QListWidget" name="listWidget">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>300</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Akaash</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(103, 103, 103);</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lbl_estado">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(200, 200, 200);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
