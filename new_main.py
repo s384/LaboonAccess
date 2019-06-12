@@ -123,7 +123,7 @@ class windows(QWidget):
         archivo.write(line)
   
       if not self.la_exist:
-        archivo.write("#_Paginas bloqueadas por LaboonAccess \n")
+        archivo.write("\n #_Paginas bloqueadas por LaboonAccess \n")
   
       cuenta = self.ui.listWidget.count()
       for x in range(0, cuenta):
