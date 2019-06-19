@@ -15,7 +15,6 @@ class windows(QWidget):
     super(windows, self).__init__()
     self.ui = Ui_Form()
     self.ui.setupUi(self)
-    self.la_exist = False
     # Conexion boton - funcion
     self.ui.btn_agregar.clicked.connect(self.agregar_dominio)
     self.ui.btn_quitar.clicked.connect(self.quitar_dominio)
@@ -46,17 +45,14 @@ class windows(QWidget):
   def controles(self):
     if self.ui.listWidget.count() == 0:
       self.ui.btn_quitar.setEnabled(False)
-      self.ui.btn_guardar.setEnabled(False)
       self.ui.btn_exportar.setEnabled(False)
     else:
       self.ui.btn_quitar.setEnabled(True)
-      self.ui.btn_guardar.setEnabled(True)
       self.ui.btn_exportar.setEnabled(True)
 
   def cargar_dominios(self):
     # Abrimos el archivo para contar el total de filas
     archivo = open('/etc/hosts', 'r')
-    fila = self.ui.listWidget.currentRow()
     total = 0
     for line in archivo:
       total += 1
@@ -67,14 +63,18 @@ class windows(QWidget):
     for line in archivo:
       laboon += 1
       if 'LaboonAccess' in line:
-        self.la_exist = True
         break
     # Iniciamos desde nuestros registros    
     paginas = archivo.readlines()
+    contador = 0
     for x in paginas:
+      contador += 1
+      if 'alternativo' in x:
+        break
       # Dividimos el dominio y la pagina
       if x != "\n":
-        dominio, page = x.split(" ")
+        division = x.split("\n")
+        dominio, page = division[0].split(" ")
         # Partimos para quitar el www
         parts = page.split('.')
         if parts[0] == 'www':
@@ -82,15 +82,19 @@ class windows(QWidget):
         else:
           pagina = '.'.join(parts[0:])
         # Agregamos la pagina a la lista
-        self.ui.listWidget.insertItem(fila, pagina)
+        self.ui.listWidget.insertItem(contador, pagina)
     archivo.close()
     self.controles()
 
   def agregar_dominio(self):
-    fila = self.ui.listWidget.currentRow()
+    fila = int(self.ui.listWidget.count()) + 1
     item, acept = QInputDialog.getText(self, "Laboon Access", "Ingrese la pagina que desea bloquear")
     if acept and item != "":
-      parts = item.split(".")
+      part = item.split("//")
+      if part[0] == 'http:' or part[0] == 'https:':
+        parts = part[1].split(".")
+      else:
+        parts = item.split(".")
       if parts[0] == 'www':
         pagina = '.'.join(parts[1:])
       else:
@@ -111,10 +115,13 @@ class windows(QWidget):
       archivo = open('/etc/hosts', 'r')
       texto = []
       for line in archivo:
-        if 'LaboonAccess' not in line:
-          texto.append(line)
+        if line == "\n":
+          pass
         else:
-          break
+          if 'LaboonAccess' not in line:
+            texto.append(line)
+          else:
+            break
       archivo.close()
         
       archivo = open('/etc/hosts', 'w')
@@ -122,15 +129,22 @@ class windows(QWidget):
       for line in texto:
         archivo.write(line)
   
-      if not self.la_exist:
-        archivo.write("\n #_Paginas bloqueadas por LaboonAccess \n")
+      archivo.write("\n#_Paginas bloqueadas por LaboonAccess\n")
   
       cuenta = self.ui.listWidget.count()
+      lista_www = []
       for x in range(0, cuenta):
         fila = self.ui.listWidget.item(x)
         if fila.text() != "\n":
-          fila = "127.0.0.1 " + str(fila.text())
+          texto = str(fila.text())
+          lista_www.append("127.0.0.1 www." + texto)
+          fila = "127.0.0.1 " + texto
           archivo.write(fila + "\n")
+
+      archivo.write("\n\n#_Bloqueo alternativo con www LaboonAccess\n")
+      for line in lista_www:
+        archivo.write(line+"\n")  
+
       self.ui.lbl_estado.setText("Paginas agregadas correctamente, cuando reinicie esto funcionara")
       self.ui.lbl_estado.setStyleSheet("color: green")
     except Exception as e:
@@ -142,16 +156,21 @@ class windows(QWidget):
     if file != "":
       archivo = open(file, 'r')
       paginas = archivo.readlines()
-      fila = self.ui.listWidget.currentRow()
+      fila = self.ui.listWidget.count()
       for x in paginas:
         if x != "\n":
           # Partimos para quitar el www
-          parts = x.split('.')
+          part = x.split("//")
+          if part[0] == 'http:' or part[0] == 'https:':
+            parts = part[1].split(".")
+          else:
+            parts = x.split(".")
           if parts[0] == 'www':
             pagina = '.'.join(parts[1:])
           else:
             pagina = '.'.join(parts[0:])
           # Agregamos la pagina a la lista
+          fila += 1
           self.ui.listWidget.insertItem(fila, pagina.lower())
       self.ui.lbl_estado.setText("Archivo importado, no olvide guardar los cambios")
       self.ui.lbl_estado.setStyleSheet("color: green")
