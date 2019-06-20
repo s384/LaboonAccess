@@ -37,7 +37,7 @@ class Ui_Form(object):
 "#btn_agregar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_agregar.setText("")
         icon1 = QtGui.QIcon()
@@ -56,7 +56,7 @@ class Ui_Form(object):
 "#btn_quitar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_quitar.setText("")
         icon2 = QtGui.QIcon()
@@ -74,7 +74,7 @@ class Ui_Form(object):
 "#btn_guardar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_guardar.setText("")
         icon3 = QtGui.QIcon()
@@ -92,7 +92,7 @@ class Ui_Form(object):
 "#btn_importar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_importar.setText("")
         icon4 = QtGui.QIcon()
@@ -110,7 +110,7 @@ class Ui_Form(object):
 "#btn_exportar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_exportar.setText("")
         icon5 = QtGui.QIcon()
@@ -128,7 +128,7 @@ class Ui_Form(object):
 "#btn_acerca:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_acerca.setText("")
         icon6 = QtGui.QIcon()
