@@ -91,21 +91,31 @@ class windows(QWidget):
     item, acept = QInputDialog.getText(self, "Laboon Access", "Ingrese la pagina que desea bloquear")
     if acept and item != "":
       part = item.split("//")
+
       if part[0] == 'http:' or part[0] == 'https:':
         parts = part[1].split(".")
       else:
         parts = item.split(".")
-      if parts[0] == 'www':
+
+      if parts[0] == 'www' or parts[0] == 'es' or parts[0] == 'm':
         pagina = '.'.join(parts[1:])
       else:
         pagina = '.'.join(parts[0:])
-      self.ui.listWidget.insertItem(fila, pagina.lower())
+      
+      if "/" in pagina:
+        page = pagina.split("/")
+        pagina = "".join(page[0:1])
 
+      self.ui.listWidget.insertItem(fila, pagina.lower())
+      self.ui.lbl_estado.setText("Solo falta guardar los cambios")
+      self.ui.lbl_estado.setStyleSheet("color: green")
     self.controles()
 
   def quitar_dominio(self):
     fila = self.ui.listWidget.currentRow()
     item = self.ui.listWidget.takeItem(fila)
+    self.ui.lbl_estado.setText("dominio eliminado: " + item.text())
+    self.ui.lbl_estado.setStyleSheet("color: red")
     del item
     self.controles()
 
@@ -137,15 +147,15 @@ class windows(QWidget):
         fila = self.ui.listWidget.item(x)
         if fila.text() != "\n":
           texto = str(fila.text())
-          lista_www.append("127.0.0.1 www." + texto)
-          fila = "127.0.0.1 " + texto
+          lista_www.append("0.0.0.0 www." + texto)
+          fila = "0.0.0.0 " + texto
           archivo.write(fila + "\n")
 
       archivo.write("\n\n#_Bloqueo alternativo con www LaboonAccess\n")
       for line in lista_www:
         archivo.write(line+"\n")  
 
-      self.ui.lbl_estado.setText("Paginas agregadas correctamente, cuando reinicie esto funcionara")
+      self.ui.lbl_estado.setText("Paginas agregadas correctamente, no olvides reiniciar")
       self.ui.lbl_estado.setStyleSheet("color: green")
     except Exception as e:
       raise e

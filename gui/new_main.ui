@@ -260,6 +260,10 @@
 	border: 2px solid  rgb(112, 112, 112);
 	border-radius: 40px;
 }
+#btn_acerca.toolTip {
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 40px;
+}
 #btn_acerca:hover{
 	border: 2px solid  rgb(112, 112, 112);
 	border-radius: 40px;
