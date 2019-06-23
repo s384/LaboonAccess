@@ -7,10 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import os, sys
 
 class Ui_Form(object):
     def setupUi(self, Form):
+        ruta = sys.argv[1]
         Form.setObjectName("Form")
         Form.resize(439, 240)
         font = QtGui.QFont()
@@ -18,7 +19,8 @@ class Ui_Form(object):
         font.setPointSize(10)
         Form.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/control parental.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icono = os.path.join(ruta, "icons/parental.svg")
+        icon.addPixmap(QtGui.QPixmap(icono), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Form.setWindowIcon(icon)
         Form.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.gridLayoutWidget = QtWidgets.QWidget(Form)
@@ -95,7 +97,10 @@ class Ui_Form(object):
         self.label_3.setText(_translate("Form", "para la comunidad de Deepin en español"))
         self.label_4.setText(_translate("Form", "Visita deepinenespañol.org para mas información"))
 
-
+def resolver_ruta(ruta_relativa):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, ruta_relativa)
+    return os.path.join(os.path.abspath('.'), ruta_relativa)
 
 
 if __name__ == "__main__":
