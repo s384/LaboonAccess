@@ -7,10 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import os, sys
 
 class Ui_Form(object):
     def setupUi(self, Form):
+        ruta = sys.argv[1]
         Form.setObjectName("Form")
         Form.resize(542, 480)
         Form.setMinimumSize(QtCore.QSize(542, 480))
@@ -20,10 +21,18 @@ class Ui_Form(object):
         font.setPointSize(11)
         Form.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/control parental.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icono = os.path.join(ruta, "icons/parental.svg")
+        icon.addPixmap(QtGui.QPixmap(icono), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Form.setWindowIcon(icon)
         Form.setWindowOpacity(1.0)
-        Form.setStyleSheet("background-color: rgb(255, 255, 255);")
+        Form.setStyleSheet("QWidget {background-color: rgb(255, 255, 255);}"
+            "QToolTip {"
+    "border: 2px solid #419fd9;"
+    "border-radius: 4px;"
+    "padding: 2px;"
+    "font-size: 20px;"
+"}\n"
+            "")
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -41,7 +50,8 @@ class Ui_Form(object):
 "}")
         self.btn_agregar.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icons/plus-circle.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icono1 = os.path.join(ruta, "icons/plus-circle.svg")
+        icon1.addPixmap(QtGui.QPixmap(icono1), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_agregar.setIcon(icon1)
         self.btn_agregar.setIconSize(QtCore.QSize(48, 48))
         self.btn_agregar.setShortcut("")
@@ -60,7 +70,8 @@ class Ui_Form(object):
 "}")
         self.btn_quitar.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("icons/minus-circle.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icono2 = os.path.join(ruta, "icons/minus-circle.svg")
+        icon2.addPixmap(QtGui.QPixmap(icono2), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_quitar.setIcon(icon2)
         self.btn_quitar.setIconSize(QtCore.QSize(48, 48))
         self.btn_quitar.setObjectName("btn_quitar")
@@ -78,7 +89,8 @@ class Ui_Form(object):
 "}")
         self.btn_guardar.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("icons/save.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icono3 = os.path.join(ruta, "icons/save.svg")
+        icon3.addPixmap(QtGui.QPixmap(icono3), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_guardar.setIcon(icon3)
         self.btn_guardar.setIconSize(QtCore.QSize(48, 48))
         self.btn_guardar.setObjectName("btn_guardar")
@@ -96,7 +108,8 @@ class Ui_Form(object):
 "}")
         self.btn_importar.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("icons/sunset.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icono4 = os.path.join(ruta, "icons/sunset.svg")
+        icon4.addPixmap(QtGui.QPixmap(icono4), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_importar.setIcon(icon4)
         self.btn_importar.setIconSize(QtCore.QSize(48, 48))
         self.btn_importar.setObjectName("btn_importar")
@@ -114,7 +127,8 @@ class Ui_Form(object):
 "}")
         self.btn_exportar.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("icons/sunrise.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icono5 = os.path.join(ruta, "icons/sunrise.svg")
+        icon5.addPixmap(QtGui.QPixmap(icono5), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exportar.setIcon(icon5)
         self.btn_exportar.setIconSize(QtCore.QSize(48, 48))
         self.btn_exportar.setObjectName("btn_exportar")
@@ -132,7 +146,8 @@ class Ui_Form(object):
 "}")
         self.btn_acerca.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("icons/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icono6 = os.path.join(ruta, "icons/user.svg")
+        icon6.addPixmap(QtGui.QPixmap(icono6), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_acerca.setIcon(icon6)
         self.btn_acerca.setIconSize(QtCore.QSize(48, 48))
         self.btn_acerca.setObjectName("btn_acerca")
@@ -186,14 +201,11 @@ class Ui_Form(object):
         self.btn_guardar.setShortcut(_translate("Form", "Ctrl+S"))
         self.btn_importar.setToolTip(_translate("Form", "Importar lista de paginas ( ctrl + O )"))
         self.btn_importar.setShortcut(_translate("Form", "Ctrl+O"))
-        self.btn_exportar.setToolTip(_translate("Form", "Exportar mi llista ( ctrl + E )"))
+        self.btn_exportar.setToolTip(_translate("Form", "Exportar mi lista ( ctrl + E )"))
         self.btn_exportar.setShortcut(_translate("Form", "Ctrl+E"))
         self.btn_acerca.setToolTip(_translate("Form", "Acerca de nosotros ( ctrl + D )"))
         self.btn_acerca.setShortcut(_translate("Form", "Ctrl+D"))
         self.label.setText(_translate("Form", "Lista con las paginas a ser bloqueadas"))
-
-
-
 
 if __name__ == "__main__":
     import sys
