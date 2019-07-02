@@ -20,7 +20,7 @@ class Ui_Form(object):
         font.setPointSize(11)
         Form.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../icons/control parental.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("icons/control parental.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Form.setWindowIcon(icon)
         Form.setWindowOpacity(1.0)
         Form.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -37,11 +37,11 @@ class Ui_Form(object):
 "#btn_agregar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_agregar.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../icons/plus-circle.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("icons/plus-circle.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_agregar.setIcon(icon1)
         self.btn_agregar.setIconSize(QtCore.QSize(48, 48))
         self.btn_agregar.setShortcut("")
@@ -56,11 +56,11 @@ class Ui_Form(object):
 "#btn_quitar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_quitar.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../icons/minus-circle.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("icons/minus-circle.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_quitar.setIcon(icon2)
         self.btn_quitar.setIconSize(QtCore.QSize(48, 48))
         self.btn_quitar.setObjectName("btn_quitar")
@@ -74,11 +74,11 @@ class Ui_Form(object):
 "#btn_guardar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_guardar.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../icons/save.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("icons/save.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_guardar.setIcon(icon3)
         self.btn_guardar.setIconSize(QtCore.QSize(48, 48))
         self.btn_guardar.setObjectName("btn_guardar")
@@ -92,11 +92,11 @@ class Ui_Form(object):
 "#btn_importar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_importar.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../icons/sunset.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("icons/sunset.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_importar.setIcon(icon4)
         self.btn_importar.setIconSize(QtCore.QSize(48, 48))
         self.btn_importar.setObjectName("btn_importar")
@@ -110,17 +110,17 @@ class Ui_Form(object):
 "#btn_exportar:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_exportar.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../icons/sunrise.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("icons/sunrise.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exportar.setIcon(icon5)
         self.btn_exportar.setIconSize(QtCore.QSize(48, 48))
         self.btn_exportar.setObjectName("btn_exportar")
         self.horizontalLayout.addWidget(self.btn_exportar)
         self.btn_acerca = QtWidgets.QPushButton(Form)
-        self.btn_acerca.setMinimumSize(QtCore.QSize(50, 80))
+        self.btn_acerca.setMinimumSize(QtCore.QSize(0, 80))
         self.btn_acerca.setStyleSheet("#btn_acerca {\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
@@ -132,11 +132,11 @@ class Ui_Form(object):
 "#btn_acerca:hover{\n"
 "    border: 2px solid  rgb(112, 112, 112);\n"
 "    border-radius: 40px;\n"
-"    background-color: rgb(236, 236, 236);\n"
+"    background-color: #419fd9;\n"
 "}")
         self.btn_acerca.setText("")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("../icons/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap("icons/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_acerca.setIcon(icon6)
         self.btn_acerca.setIconSize(QtCore.QSize(48, 48))
         self.btn_acerca.setObjectName("btn_acerca")
@@ -161,7 +161,32 @@ class Ui_Form(object):
         font.setFamily("Akaash")
         font.setPointSize(13)
         self.listWidget.setFont(font)
-        self.listWidget.setStyleSheet("color: rgb(103, 103, 103);")
+        self.listWidget.setStyleSheet(
+            "QScrollBar {\n"
+"    border: 2px solid grey;\n"
+"    background: #32CC99;\n"
+"    height: 15px;\n"
+"    margin: 0px 20px 0 20px;\n"
+"}\n"
+"QScrollBar::handle {\n"
+"    background: white;\n"
+"    min-width: 20px;\n"
+"}\n"
+"QScrollBar::add-line {\n"
+"    border: 2px solid grey;\n"
+"    background: #32CC99;\n"
+"    width: 20px;\n"
+"    subcontrol-position: right;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-line {\n"
+"    border: 2px solid grey;\n"
+"    background: #32CC99;\n"
+"    width: 20px;\n"
+"    subcontrol-position: left;\n"
+"    subcontrol-origin: margin;\n"
+"} ")
         self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.listWidget.setObjectName("listWidget")

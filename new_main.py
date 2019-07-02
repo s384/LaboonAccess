@@ -22,6 +22,7 @@ class windows(QWidget):
     self.ui.btn_importar.clicked.connect(self.importar_dominio)
     self.ui.btn_exportar.clicked.connect(self.exportar_dominio)
     self.ui.btn_acerca.clicked.connect(self.acerca_de)
+    self.ui.btn_pass.clicked.connect(self.password)
     # Personalizando Componentes
     font = QFont()
     font.setFamily("Akaash")
@@ -81,6 +82,11 @@ class windows(QWidget):
           pagina = '.'.join(parts[1:])
         else:
           pagina = '.'.join(parts[0:])
+
+        if "\n" in pagina:
+            page = pagina.split("\n")
+            pagina = "".join(page[0:1])
+
         # Agregamos la pagina a la lista
         self.ui.listWidget.insertItem(contador, pagina)
     archivo.close()
@@ -105,6 +111,10 @@ class windows(QWidget):
       if "/" in pagina:
         page = pagina.split("/")
         pagina = "".join(page[0:1])
+
+      if "\n" in pagina:
+            page = pagina.split("\n")
+            pagina = "".join(page[0:1])
 
       self.ui.listWidget.insertItem(fila, pagina.lower())
       self.ui.lbl_estado.setText("Solo falta guardar los cambios")
@@ -175,10 +185,20 @@ class windows(QWidget):
             parts = part[1].split(".")
           else:
             parts = x.split(".")
-          if parts[0] == 'www':
+
+          if parts[0] == 'www' or parts[0] == 'es' or parts[0] == 'm':
             pagina = '.'.join(parts[1:])
           else:
             pagina = '.'.join(parts[0:])
+          
+          if "/" in pagina:
+            page = pagina.split("/")
+            pagina = "".join(page[0:1])
+
+          if "\n" in pagina:
+            page = pagina.split("\n")
+            pagina = "".join(page[0:1])
+
           # Agregamos la pagina a la lista
           fila += 1
           self.ui.listWidget.insertItem(fila, pagina.lower())
@@ -194,7 +214,7 @@ class windows(QWidget):
       for x in range(0, cuenta):
         fila = self.ui.listWidget.item(x)
         if fila.text() != "":
-          archivo.write(str(fila.text()))
+          archivo.write(str(fila.text())+"\n")
       archivo.close()
 
       self.ui.lbl_estado.setText("Archivo exportado correctamente")
@@ -205,6 +225,9 @@ class windows(QWidget):
     ui=nosotrosGui()
     ui.setupUi(widget)
     widget.exec_()
+
+  def password(self):
+    print("Funcion oculta para el bloqueo por pass")
     
 if __name__ == '__main__':
   if not os.path.exists('/etc/hosts.la.backup'):

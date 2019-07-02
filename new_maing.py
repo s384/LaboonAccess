@@ -26,13 +26,41 @@ class Ui_Form(object):
         Form.setWindowIcon(icon)
         Form.setWindowOpacity(1.0)
         Form.setStyleSheet("QWidget {background-color: rgb(255, 255, 255);}"
-            "QToolTip {"
-    "border: 2px solid #419fd9;"
-    "border-radius: 4px;"
-    "padding: 2px;"
-    "font-size: 20px;"
+"QToolTip {"
+"    border: 2px solid #419fd9;"
+"    border-radius: 4px;"
+"    padding: 2px;"
+"    font-size: 20px;"
 "}\n"
-            "")
+"QScrollBar {\n"
+"    border: 2px solid grey;\n"
+"    height: 15px;\n"
+"    margin: 0px 20px 0 20px;\n"
+"}\n"
+"QScrollBar::handle {\n"
+"    background: #419fd9;\n"
+"    min-width: 20px;\n"
+"}\n"
+"QScrollBar::add-line {\n"
+"    border: 2px solid grey;\n"
+"    width: 20px;\n"
+"    subcontrol-position: right;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-line {\n"
+"    border: 2px solid grey;\n"
+"    width: 20px;\n"
+"    subcontrol-position: left;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar:left-arrow:horizontal, QScrollBar::right-arrow:horizontal {\n"
+"    border: 2px solid grey;\n"
+"    width: 3px;\n"
+"    height: 3px;\n"
+"    background: white;\n"
+"}\n"
+"")
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -152,6 +180,13 @@ class Ui_Form(object):
         self.btn_acerca.setIconSize(QtCore.QSize(48, 48))
         self.btn_acerca.setObjectName("btn_acerca")
         self.horizontalLayout.addWidget(self.btn_acerca)
+
+        self.btn_pass = QtWidgets.QPushButton(Form)
+        self.btn_pass.setMinimumSize(QtCore.QSize(0, 0))
+        self.btn_pass.setMaximumSize(QtCore.QSize(0, 0))
+        self.btn_pass.setText("")
+        self.btn_pass.setObjectName("btn_pass")
+
         self.verticalLayout.addLayout(self.horizontalLayout)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
@@ -176,6 +211,16 @@ class Ui_Form(object):
         self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.listWidget.setObjectName("listWidget")
+        self.listWidget.setStyleSheet("#listWidget::item:selected  {\n"
+    "border: 1px solid #6a6ea9;\n"
+    "color: #419fd9;\n"
+"}\n"
+"#listWidget::item:hover {\n"
+    "border: 0px;"
+    "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+                                "stop: 0 #FAFBFE, stop: 1 #DCDEF1);\n"
+"}\n"
+)
         self.verticalLayout.addWidget(self.listWidget)
         self.lbl_estado = QtWidgets.QLabel(Form)
         font = QtGui.QFont()
@@ -183,6 +228,7 @@ class Ui_Form(object):
         font.setItalic(True)
         self.lbl_estado.setFont(font)
         self.lbl_estado.setStyleSheet("color: rgb(200, 200, 200);")
+        self.lbl_estado.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_estado.setText("")
         self.lbl_estado.setObjectName("lbl_estado")
         self.verticalLayout.addWidget(self.lbl_estado)
@@ -205,6 +251,7 @@ class Ui_Form(object):
         self.btn_exportar.setShortcut(_translate("Form", "Ctrl+E"))
         self.btn_acerca.setToolTip(_translate("Form", "Acerca de nosotros ( ctrl + D )"))
         self.btn_acerca.setShortcut(_translate("Form", "Ctrl+D"))
+        self.btn_pass.setShortcut(_translate("Form", "Ctrl+B"))
         self.label.setText(_translate("Form", "Lista con las paginas a ser bloqueadas"))
 
 if __name__ == "__main__":

@@ -248,7 +248,7 @@
       <widget class="QPushButton" name="btn_acerca">
        <property name="minimumSize">
         <size>
-         <width>50</width>
+         <width>0</width>
          <height>80</height>
         </size>
        </property>
@@ -339,7 +339,31 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(103, 103, 103);</string>
+      <string notr="true">QScrollBar {
+    border: 2px solid grey;
+    background: #32CC99;
+    height: 15px;
+    margin: 0px 20px 0 20px;
+}
+QScrollBar::handle {
+    background: white;
+    min-width: 20px;
+}
+QScrollBar::add-line {
+    border: 2px solid grey;
+    background: #32CC99;
+    width: 20px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line {
+    border: 2px solid grey;
+    background: #32CC99;
+    width: 20px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+} </string>
      </property>
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOn</enum>
@@ -362,6 +386,9 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
