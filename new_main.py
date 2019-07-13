@@ -5,15 +5,20 @@ import sys, os
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QDesktopWidget, QDialog
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog, QLineEdit, QMessageBox, QGraphicsDropShadowEffect
+from PyQt5.QtWidgets import QPushButton
 
-from new_maing import Ui_Form
+from maing import Ui_Dialog
 from nosotros import Ui_Form as nosotrosGui
+
+global password
+password = False
+global contra
 
 class windows(QWidget):
   def __init__(self):
     super(windows, self).__init__()
-    self.ui = Ui_Form()
+    self.ui = Ui_Dialog()
     self.ui.setupUi(self)
     # Conexion boton - funcion
     self.ui.btn_agregar.clicked.connect(self.agregar_dominio)
@@ -23,6 +28,7 @@ class windows(QWidget):
     self.ui.btn_exportar.clicked.connect(self.exportar_dominio)
     self.ui.btn_acerca.clicked.connect(self.acerca_de)
     self.ui.btn_pass.clicked.connect(self.password)
+    self.ui.btn_odns.clicked.connect(self.open_dns)
     # Personalizando Componentes
     font = QFont()
     font.setFamily("Akaash")
@@ -36,6 +42,8 @@ class windows(QWidget):
     # Cargar dominios
     self.center()
     self.cargar_dominios()
+    if password:
+      self.bloque_control(False)
 
   def center(self):
     qr = self.frameGeometry()
@@ -50,6 +58,15 @@ class windows(QWidget):
     else:
       self.ui.btn_quitar.setEnabled(True)
       self.ui.btn_exportar.setEnabled(True)
+
+  def bloque_control(self, boolean):
+    self.ui.btn_agregar.setEnabled(boolean)
+    self.ui.btn_quitar.setEnabled(boolean)
+    self.ui.btn_guardar.setEnabled(boolean)
+    self.ui.btn_odns.setEnabled(boolean)
+    self.ui.btn_exportar.setEnabled(boolean)
+    self.ui.btn_importar.setEnabled(boolean)
+    self.ui.listWidget.setEnabled(boolean)
 
   def cargar_dominios(self):
     # Abrimos el archivo para contar el total de filas
@@ -94,7 +111,8 @@ class windows(QWidget):
 
   def agregar_dominio(self):
     fila = int(self.ui.listWidget.count()) + 1
-    item, acept = QInputDialog.getText(self, "Laboon Access", "Ingrese la pagina que desea bloquear")
+    item, acept = QInputDialog.getText(
+        self, "Laboon Access", "Ingrese la pagina que desea bloquear")
     if acept and item != "":
       part = item.split("//")
 
@@ -165,8 +183,9 @@ class windows(QWidget):
       for line in lista_www:
         archivo.write(line+"\n")  
 
-      self.ui.lbl_estado.setText("Paginas agregadas correctamente, no olvides reiniciar")
+      self.ui.lbl_estado.setText("Paginas agregadas correctamente")
       self.ui.lbl_estado.setStyleSheet("color: green")
+      os.system("sudo /etc/init.d/networking restart")
     except Exception as e:
       raise e
 
@@ -226,12 +245,153 @@ class windows(QWidget):
     ui.setupUi(widget)
     widget.exec_()
 
-  def password(self):
-    print("Funcion oculta para el bloqueo por pass")
+  def open_dns(self):
+    laboon = False
+    archivo = open('/etc/resolv.conf', 'r')
+    texto = []
+    for line in archivo:
+      if line == "\n":
+        pass
+      else:
+        if 'LaboonAccess' not in line:
+          texto.append(line)
+        else:
+          laboon = True
+          break
+    archivo.close()
     
+    if not laboon:
+      msg = QMessageBox()
+      msg.setIcon(QMessageBox.Information)
+
+      msg.setText("¿Desea activar el OpenDns?")
+      msg.setInformativeText(
+          "Ayuda a hacer de la web un lugar más seguro.")
+      msg.setWindowTitle("LaboonAccess OpenDns")
+      msg.setDetailedText("IMPORTANTE: Este servicio no esta vinculado con Laboon Access\n"
+                          "Con el filtro de protección preconfigurado, puede "
+                          "proteger a su familia contra el contenido para adultos "
+                          "y más. Es la forma más fácil de agregar controles de "
+                          "filtrado parental y de contenido.")
+      msg.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
+
+      retval = msg.exec_()
+      if retval == QMessageBox.Yes:
+        archivo = open('/etc/resolv.conf', 'w')
+        for line in texto:
+          if "#" in line:
+            archivo.write(line)
+          else:
+            archivo.write("#" + line)
+
+        archivo.write("\n#_Generado por LaboonAccess\n")
+        archivo.write("nameserver 208.67.222.222\n")
+        archivo.write("nameserver 208.67.220.220\n")
+
+        archivo.close()
+        self.ui.lbl_estado.setText("Bloqueo de OpenDns, activado")
+        self.ui.lbl_estado.setStyleSheet("color: green")
+    else:
+      msg = QMessageBox()
+      msg.setIcon(QMessageBox.Information)
+      msg.setWindowTitle("LaboonAccess OpenDns")
+      msg.setText("¿Desea desactivar OpenDns?")
+      msg.setInformativeText("Esto le permitira navegar libremente por internet")
+      msg.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
+      retval = msg.exec_()
+
+      if retval == QMessageBox.Yes:
+        print("Abriendo el archivo")
+        archivo = open('/etc/resolv.conf', 'w')
+        for line in texto:
+          print(line)
+          if not "NetworkManager" in line:
+            linea = line.split("#")
+            archivo.write("".join(linea[0:]))
+          else:
+            archivo.write(line)
+        self.ui.lbl_estado.setText("Bloqueo de OpenDns, deshabilitado")
+        self.ui.lbl_estado.setStyleSheet("color: #419fd9")
+    os.system("sudo /etc/init.d/networking restart")
+
+  def password(self):
+    global password
+    if password == True:
+      item, acept = QInputDialog.getText(
+          self, "Laboon Access", "Contraseña: ", QLineEdit.Password)
+      if contra == self.encrypt(item):
+        msgBox = QMessageBox()
+        msgBox.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)
+        msgBox.setStyleSheet("QMessageBox { font: bold 14px; padding: 6px;"
+                            "background-color: white; min-width: 10em;"
+          "}"
+        )
+        msgBox.setText('Que accion desea realizar??')
+        btnYes = QPushButton('Desactivar proteccion')
+        msgBox.addButton(btnYes, QMessageBox.ActionRole)
+        btnNo = QPushButton('Eliminar contraseña')
+        msgBox.addButton(btnNo, QMessageBox.ActionRole)
+        btnCan = QPushButton('Cancelar')
+        msgBox.addButton(btnCan, QMessageBox.NoRole)
+        btnYes.setStyleSheet("QPushButton {padding: 4px; margin: 6px;"
+                            "border: 2px solid green; border-radius: 5px;}"
+                            "QPushButton:hover{ border: 2px solid #419fd9;}")
+        btnNo.setStyleSheet("QPushButton {padding: 4px; margin: 6px;"
+                            "border: 2px solid red; border-radius: 5px;}"
+                            "QPushButton:hover{ border: 2px solid #419fd9;}")
+        btnCan.setStyleSheet("QPushButton {padding: 4px; margin: 6px;"
+                            "border: 2px solid orange; border-radius: 5px;}"
+                            "QPushButton:hover{ border: 2px solid #419fd9;}")
+        msgBox.exec_()
+        ret = msgBox.clickedButton()
+        if ret == btnYes:
+          self.bloque_control(True)
+        elif ret == btnNo:
+          os.system('rm - r /etc/labac.pas')
+          self.ui.lbl_estado.setText("Contraseña eliminada")
+          self.ui.lbl_estado.setStyleSheet("color: red")
+          password = False
+        else:
+          return
+    else:
+      msg = QMessageBox()
+      msg.setIcon(QMessageBox.Information)
+
+      msg.setText("¿Desea establecer una contraseña de seguridad?")
+      msg.setInformativeText("Esta contraseña impedira el uso del programa")
+      msg.setWindowTitle("LaboonAccess Password")
+      msg.setDetailedText("Esta contraseña impedira que se agregen, quiten o guarde "
+        "cambios en la lista de paginas, a no ser que ingrese la contraseña")
+      msg.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
+
+      retval = msg.exec_()
+      if retval == QMessageBox.Yes:
+        file = open('/etc/labac.pas', 'w')
+        item = ""
+        item2 = " "
+        while item != item2:
+          item, acept = QInputDialog.getText(self, "Laboon Access", "Ingrese una contraseña", QLineEdit.Password)
+          item2, acept2 = QInputDialog.getText(self, "Laboon Access", "Repita la contraseña", QLineEdit.Password)
+          if item == item2:
+            file.write(self.encrypt(item))
+            file.close()
+            self.ui.lbl_estado.setText("Contraseña establecida")
+            self.ui.lbl_estado.setStyleSheet("color: green")
+            password = True
+  
+  def encrypt(self, message):
+    newS = ''
+    for car in message:
+        newS = newS+chr(ord(car)+2)
+    return newS
+
 if __name__ == '__main__':
   if not os.path.exists('/etc/hosts.la.backup'):
     os.system('cp /etc/hosts /etc/hosts.la.backup')
+  if os.path.exists('/etc/labac.pas'):
+    archivo = open('/etc/labac.pas', 'r')
+    contra = archivo.readline()
+    password = True
   app = QApplication(sys.argv)
   win = windows()
   win.show()

@@ -84,10 +84,10 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "LaboonAccess - Acerca de Nosotros"))
+        Form.setWindowTitle(_translate("Form", "Acerca de LaboonAccess"))
         self.label_2.setText(_translate("Form", "Aplicacion desarrollada por: Sebastian Trujillo"))
         self.label_4.setText(_translate("Form", "<html><head/><body><p>Visita <a href=\"https://deepinenespañol.org/\"><span style=\" text-decoration: underline; color:#0000ff;\">deepinenespañol.org</span></a> para mas información</p></body></html>"))
-        self.label.setText(_translate("Form", "Laboon Access"))
+        self.label.setText(_translate("Form", "Laboon Access - Version 1.3"))
         self.label_3.setText(_translate("Form", "para la comunidad de Deepin en español"))
 
 def resolver_ruta(ruta_relativa):

@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>510</width>
+    <height>512</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>510</width>
+    <height>512</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>510</width>
+    <height>512</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Century Schoolbook L</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Laboon Access</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../icons/parental.svg</normaloff>../icons/parental.svg</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+	background-color: #fff;
+	border-radius: 30px;
+}
+
+QToolTip {
+	border: 2px solid #419fd9;
+    border-radius: 4px;
+    padding: 2px;
+    font-size: 20px;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="0">
+    <widget class="QPushButton" name="btn_pass">
+     <property name="maximumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="shortcut">
+      <string>Ctrl+B</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="3">
+    <widget class="QLabel" name="label_3">
+     <property name="font">
+      <font>
+       <family>Century Schoolbook L</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #419fd9;</string>
+     </property>
+     <property name="text">
+      <string>deepinenespañol.org</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="3">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <family>Century Schoolbook L</family>
+       <pointsize>13</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(200, 200, 200);</string>
+     </property>
+     <property name="text">
+      <string>Lista con las paginas a ser bloqueadas</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="4">
+    <widget class="QListWidget" name="listWidget">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>300</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Schoolbook L</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QScrollBar {
+    border: 2px solid grey;
+    background: #32CC99;
+    height: 15px;
+    margin: 0px 20px 0 20px;
+}
+QScrollBar::handle {
+    background: white;
+    min-width: 20px;
+}
+QScrollBar::add-line {
+    border: 2px solid grey;
+    background: #32CC99;
+    width: 20px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line {
+    border: 2px solid grey;
+    background: #32CC99;
+    width: 20px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+} 
+#listWidget::item:selected  {
+    border: 1px solid #6a6ea9;
+    color: #419fd9;
+}
+#listWidget::item:hover {
+    border: 0px;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #FAFBFE, stop: 1 #DCDEF1);
+}</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustIgnored</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0" colspan="4">
+    <widget class="QLabel" name="lbl_estado">
+     <property name="font">
+      <font>
+       <family>Century Schoolbook L</family>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="4">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btn_agregar">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Schoolbook L</family>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Agregar una pagina ( ctrl + A )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+}
+QPushButton:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+	background-color: #419fd9;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/plus-circle.svg</normaloff>../icons/plus-circle.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_quitar">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Schoolbook L</family>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Quitar pagina seleccionado ( supr )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+}
+QPushButton:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+	background-color: #419fd9;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/minus-circle.svg</normaloff>../icons/minus-circle.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Del</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_guardar">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Schoolbook L</family>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Guardar la lista ( ctrl + S )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+}
+QPushButton:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+	background-color: #419fd9;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/save.svg</normaloff>../icons/save.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+S</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_odns">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Schoolbook L</family>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Activar bloqueos OpenDns ( ctrl + F )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+}
+QPushButton:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+	background-color: #419fd9;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/shield.svg</normaloff>../icons/shield.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+F</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_importar">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Schoolbook L</family>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Importar lista de paginas ( ctrl + O )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+}
+QPushButton:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+	background-color: #419fd9;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/sunset.svg</normaloff>../icons/sunset.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+O</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_exportar">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Schoolbook L</family>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Exportar mi llista ( ctrl + E )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+}
+QPushButton:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+	background-color: #419fd9;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/sunrise.svg</normaloff>../icons/sunrise.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+E</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_acerca">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Schoolbook L</family>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Acerca de nosotros ( ctrl + D )</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+}
+QPushButton:hover{
+	border: 2px solid  rgb(112, 112, 112);
+	border-radius: 30px;
+	background-color: #419fd9;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../icons/user.svg</normaloff>../icons/user.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+D</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
