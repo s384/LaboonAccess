@@ -21,33 +21,36 @@ ruta_user = abspath(join(dirname(__file__), 'icons', 'user.svg'))
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(510, 512)
-        Dialog.setMinimumSize(QtCore.QSize(510, 512))
-        Dialog.setMaximumSize(QtCore.QSize(510, 512))
+        Dialog.resize(480, 450)
+        Dialog.setMinimumSize(QtCore.QSize(480, 450))
+        Dialog.setMaximumSize(QtCore.QSize(480, 450))
         font = QtGui.QFont()
         font.setFamily("Century Schoolbook L")
         Dialog.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(ruta_parental),
-                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(ruta_parental), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setStyleSheet("QWidget{\n"
 "    background-color: #fff;\n"
 "}\n"
-"\n"
 "QToolTip {\n"
 "    border: 2px solid #419fd9;\n"
 "    border-radius: 4px;\n"
 "    padding: 2px;\n"
 "    font-size: 20px;\n"
-"}"
+"    background-color: rgb(255, 255, 255);\n"
+"}\n"
 "QInputDialog{\n"
 "    background-color: white;\n"
-"}"
-)
+"}")
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         self.btn_pass = QtWidgets.QPushButton(Dialog)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_pass.sizePolicy().hasHeightForWidth())
+        self.btn_pass.setSizePolicy(sizePolicy)
         self.btn_pass.setMaximumSize(QtCore.QSize(0, 0))
         self.btn_pass.setText("")
         self.btn_pass.setObjectName("btn_pass")
@@ -57,8 +60,13 @@ class Ui_Dialog(object):
         font.setFamily("Century Schoolbook L")
         font.setPointSize(11)
         self.label_3.setFont(font)
-        self.label_3.setStyleSheet("color: #419fd9;")
+        self.label_3.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.label_3.setAutoFillBackground(False)
+        self.label_3.setStyleSheet("")
+        self.label_3.setTextFormat(QtCore.Qt.RichText)
+        self.label_3.setScaledContents(True)
         self.label_3.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_3.setOpenExternalLinks(True)
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 6, 3, 1, 1)
         self.label = QtWidgets.QLabel(Dialog)
@@ -69,53 +77,9 @@ class Ui_Dialog(object):
         font.setWeight(50)
         self.label.setFont(font)
         self.label.setStyleSheet("color: rgb(200, 200, 200);")
+        self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 6, 0, 1, 3)
-        self.listWidget = QtWidgets.QListWidget(Dialog)
-        self.listWidget.setEnabled(True)
-        self.listWidget.setMinimumSize(QtCore.QSize(0, 300))
-        font = QtGui.QFont()
-        font.setFamily("Century Schoolbook L")
-        font.setPointSize(13)
-        self.listWidget.setFont(font)
-        self.listWidget.setStyleSheet("QScrollBar {\n"
-"    border: 2px solid grey;\n"
-"    background: #32CC99;\n"
-"    height: 15px;\n"
-"    margin: 0px 20px 0 20px;\n"
-"}\n"
-"QScrollBar::handle {\n"
-"    background: white;\n"
-"    min-width: 20px;\n"
-"}\n"
-"QScrollBar::add-line {\n"
-"    border: 2px solid grey;\n"
-"    background: #32CC99;\n"
-"    width: 20px;\n"
-"    subcontrol-position: right;\n"
-"    subcontrol-origin: margin;\n"
-"}\n"
-"QScrollBar::sub-line {\n"
-"    border: 2px solid grey;\n"
-"    background: #32CC99;\n"
-"    width: 20px;\n"
-"    subcontrol-position: left;\n"
-"    subcontrol-origin: margin;\n"
-"} \n"
-"#listWidget::item:selected  {\n"
-"    border: 1px solid #6a6ea9;\n"
-"    color: #419fd9;\n"
-"}\n"
-"#listWidget::item:hover {\n"
-"    border: 0px;\n"
-"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                stop: 0 #FAFBFE, stop: 1 #DCDEF1);\n"
-"}")
-        self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.listWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustIgnored)
-        self.listWidget.setObjectName("listWidget")
-        self.gridLayout.addWidget(self.listWidget, 8, 0, 1, 4)
         self.lbl_estado = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setFamily("Century Schoolbook L")
@@ -192,7 +156,13 @@ class Ui_Dialog(object):
         self.btn_guardar.setObjectName("btn_guardar")
         self.horizontalLayout.addWidget(self.btn_guardar)
         self.btn_odns = QtWidgets.QPushButton(Dialog)
-        self.btn_odns.setMinimumSize(QtCore.QSize(0, 60))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_pass.sizePolicy().hasHeightForWidth())
+        self.btn_odns.setSizePolicy(sizePolicy)
+        self.btn_odns.setMaximumSize(QtCore.QSize(0, 0))
+        #self.btn_odns.setMinimumSize(QtCore.QSize(0, 60))
         font = QtGui.QFont()
         font.setFamily("Century Schoolbook L")
         self.btn_odns.setFont(font)
@@ -276,6 +246,55 @@ class Ui_Dialog(object):
         self.btn_acerca.setObjectName("btn_acerca")
         self.horizontalLayout.addWidget(self.btn_acerca)
         self.gridLayout.addLayout(self.horizontalLayout, 4, 0, 1, 4)
+        self.listWidget = QtWidgets.QListWidget(Dialog)
+        self.listWidget.setEnabled(True)
+        self.listWidget.setMinimumSize(QtCore.QSize(0, 300))
+        font = QtGui.QFont()
+        font.setFamily("Century Schoolbook L")
+        font.setPointSize(13)
+        self.listWidget.setFont(font)
+        self.listWidget.setStyleSheet("QScrollBar {\n"
+"    border: 2px solid grey;\n"
+"    background: #32CC99;\n"
+"    height: 15px;\n"
+"    margin: 0px 20px 0 20px;\n"
+"}\n"
+"QScrollBar::handle {\n"
+"    background: white;\n"
+"    min-width: 20px;\n"
+"}\n"
+"QScrollBar::add-line {\n"
+"    border: 2px solid grey;\n"
+"    background: #32CC99;\n"
+"    width: 20px;\n"
+"    subcontrol-position: right;\n"
+"    subcontrol-origin: margin;\n"
+"}\n"
+"QScrollBar::sub-line {\n"
+"    border: 2px solid grey;\n"
+"    background: #32CC99;\n"
+"    width: 20px;\n"
+"    subcontrol-position: left;\n"
+"    subcontrol-origin: margin;\n"
+"} \n"
+"#listWidget{\n"
+"    border: 2px solid #419fd9;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"#listWidget::item:selected  {\n"
+"    border: 1px solid #6a6ea9;\n"
+"    color: #419fd9;\n"
+"}\n"
+"#listWidget::item:hover {\n"
+"    border: 0px;\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #FAFBFE, stop: 1 #DCDEF1);\n"
+"}")
+        self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.listWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustIgnored)
+        self.listWidget.setObjectName("listWidget")
+        self.gridLayout.addWidget(self.listWidget, 8, 0, 1, 4)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -284,8 +303,9 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Laboon Access"))
         self.btn_pass.setShortcut(_translate("Dialog", "Ctrl+B"))
-        self.label_3.setText(_translate("Dialog", "deepinenespañol.org"))
-        self.label.setText(_translate("Dialog", "Lista con las paginas a ser bloqueadas"))
+        self.label_3.setToolTip(_translate("Dialog", "Visita nuestra comunidad."))
+        self.label_3.setText(_translate("Dialog", "<html><head/><body><p><a href=\"https://xn--deepinenespaol-1nb.org/\"><span style=\" text-decoration: underline; color:#419fd9;\">deepinenespañol.org</span></a></p></body></html>"))
+        self.label.setText(_translate("Dialog", "Lista de paginas a ser bloqueadas"))
         self.btn_agregar.setToolTip(_translate("Dialog", "Agregar una pagina ( ctrl + A )"))
         self.btn_agregar.setShortcut(_translate("Dialog", "Ctrl+A"))
         self.btn_quitar.setToolTip(_translate("Dialog", "Quitar pagina seleccionado ( supr )"))
@@ -293,10 +313,10 @@ class Ui_Dialog(object):
         self.btn_guardar.setToolTip(_translate("Dialog", "Guardar la lista ( ctrl + S )"))
         self.btn_guardar.setShortcut(_translate("Dialog", "Ctrl+S"))
         self.btn_odns.setToolTip(_translate("Dialog", "Activar bloqueos OpenDns ( ctrl + F )"))
-        self.btn_odns.setShortcut(_translate("Dialog", "Ctrl+F"))
+        #self.btn_odns.setShortcut(_translate("Dialog", "Ctrl+F"))
         self.btn_importar.setToolTip(_translate("Dialog", "Importar lista de paginas ( ctrl + O )"))
         self.btn_importar.setShortcut(_translate("Dialog", "Ctrl+O"))
-        self.btn_exportar.setToolTip(_translate("Dialog", "Exportar mi llista ( ctrl + E )"))
+        self.btn_exportar.setToolTip(_translate("Dialog", "Exportar mi lista ( ctrl + E )"))
         self.btn_exportar.setShortcut(_translate("Dialog", "Ctrl+E"))
         self.btn_acerca.setToolTip(_translate("Dialog", "Acerca de nosotros ( ctrl + D )"))
         self.btn_acerca.setShortcut(_translate("Dialog", "Ctrl+D"))
