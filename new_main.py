@@ -36,8 +36,7 @@ class windows(QWidget):
     font.setBold(False)
     font.setWeight(50)
     self.ui.lbl_estado.setFont(font)
-    self.ui.lbl_estado.setText("Bienvenido a Laboon Access, vamos a bloquear paginas!!!")
-    self.ui.lbl_estado.setStyleSheet("color: green")
+    self.mensaje("Bienvenido a Laboon Access, vamos a bloquear paginas!!!", "green")
     self.ui.listWidget.setGridSize(QSize(0, 20))
     # Cargar dominios
     self.center()
@@ -50,6 +49,10 @@ class windows(QWidget):
     cp = QDesktopWidget().availableGeometry().center()
     qr.moveCenter(cp)
     self.move(qr.topLeft())
+
+  def mensaje(self, text, color):
+    self.ui.lbl_estado.setText(text)
+    self.ui.lbl_estado.setStyleSheet("color: " + color)
 
   def controles(self):
     if self.ui.listWidget.count() == 0:
@@ -135,15 +138,13 @@ class windows(QWidget):
             pagina = "".join(page[0:1])
 
       self.ui.listWidget.insertItem(fila, pagina.lower())
-      self.ui.lbl_estado.setText("Solo falta guardar los cambios")
-      self.ui.lbl_estado.setStyleSheet("color: green")
+      self.mensaje("Solo falta guardar los cambios", "green")
     self.controles()
 
   def quitar_dominio(self):
     fila = self.ui.listWidget.currentRow()
     item = self.ui.listWidget.takeItem(fila)
-    self.ui.lbl_estado.setText("dominio eliminado: " + item.text())
-    self.ui.lbl_estado.setStyleSheet("color: red")
+    self.mensaje("Dominio eliminado: " + item.text(), "red")
     del item
     self.controles()
 
@@ -183,8 +184,7 @@ class windows(QWidget):
       for line in lista_www:
         archivo.write(line+"\n")  
 
-      self.ui.lbl_estado.setText("Paginas agregadas correctamente")
-      self.ui.lbl_estado.setStyleSheet("color: green")
+      self.mensaje("Paginas agregadas correctamente", "green")
       os.system("sudo /etc/init.d/networking restart")
     except Exception as e:
       raise e
@@ -221,8 +221,7 @@ class windows(QWidget):
           # Agregamos la pagina a la lista
           fila += 1
           self.ui.listWidget.insertItem(fila, pagina.lower())
-      self.ui.lbl_estado.setText("Archivo importado, no olvide guardar los cambios")
-      self.ui.lbl_estado.setStyleSheet("color: green")
+      self.mensaje("Archivo importado, no olvide guardar los cambios", "green")
 
   def exportar_dominio(self):
     file = str(QFileDialog.getExistingDirectory(self, "Donde desea guardar el archivo?"))
@@ -236,8 +235,7 @@ class windows(QWidget):
           archivo.write(str(fila.text())+"\n")
       archivo.close()
 
-      self.ui.lbl_estado.setText("Archivo exportado correctamente")
-      self.ui.lbl_estado.setStyleSheet("color: green")
+      self.mensaje("Archivo exportado correctamente", "green")
 
   def acerca_de(self):
     widget = QDialog(self)
@@ -246,20 +244,7 @@ class windows(QWidget):
     widget.exec_()
 
   def open_dns(self):
-    laboon = False
-    archivo = open('/etc/resolv.conf', 'r')
-    texto = []
-    for line in archivo:
-      if line == "\n":
-        pass
-      else:
-        if 'LaboonAccess' not in line:
-          texto.append(line)
-        else:
-          laboon = True
-          break
-    archivo.close()
-    
+    """
     if not laboon:
       msg = QMessageBox()
       msg.setIcon(QMessageBox.Information)
@@ -277,20 +262,9 @@ class windows(QWidget):
 
       retval = msg.exec_()
       if retval == QMessageBox.Yes:
-        archivo = open('/etc/resolv.conf', 'w')
-        for line in texto:
-          if "#" in line:
-            archivo.write(line)
-          else:
-            archivo.write("#" + line)
 
-        archivo.write("\n#_Generado por LaboonAccess\n")
-        archivo.write("nameserver 208.67.222.222\n")
-        archivo.write("nameserver 208.67.220.220\n")
+        self.mensaje("Bloqueo de OpenDns, activado", "green")
 
-        archivo.close()
-        self.ui.lbl_estado.setText("Bloqueo de OpenDns, activado")
-        self.ui.lbl_estado.setStyleSheet("color: green")
     else:
       msg = QMessageBox()
       msg.setIcon(QMessageBox.Information)
@@ -299,19 +273,9 @@ class windows(QWidget):
       msg.setInformativeText("Esto le permitira navegar libremente por internet")
       msg.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
       retval = msg.exec_()
-
-      if retval == QMessageBox.Yes:
-        print("Abriendo el archivo")
-        archivo = open('/etc/resolv.conf', 'w')
-        for line in texto:
-          print(line)
-          if not "NetworkManager" in line:
-            linea = line.split("#")
-            archivo.write("".join(linea[0:]))
-          else:
-            archivo.write(line)
-        self.ui.lbl_estado.setText("Bloqueo de OpenDns, deshabilitado")
-        self.ui.lbl_estado.setStyleSheet("color: #419fd9")
+      
+      self.mensaje("Bloqueo de OpenDns, deshabilitado", "#419fd9")
+    """
     os.system("sudo /etc/init.d/networking restart")
 
   def password(self):
@@ -375,8 +339,7 @@ class windows(QWidget):
           if item == item2:
             file.write(self.encrypt(item))
             file.close()
-            self.ui.lbl_estado.setText("Contraseña establecida")
-            self.ui.lbl_estado.setStyleSheet("color: green")
+            self.mensaje("Contraseña establecida", "green")
             password = True
   
   def encrypt(self, message):
